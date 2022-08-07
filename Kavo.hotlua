@@ -1,5 +1,10 @@
 local Kavo = {}
 
+for z,_ in pairs(game.CoreGui:GetChildren()) do 
+    if a.Name="Kavo"then a:Destroy() 
+   end 
+end
+
 local tween = game:GetService("TweenService")
 local tweeninfo = TweenInfo.new
 local input = game:GetService("UserInputService")
@@ -11,7 +16,6 @@ function Kavo:DraggingEnabled(frame, parent)
         
     parent = parent or frame
     
-    -- stolen from wally or kiriot, kek
     local dragging = false
     local dragInput, mousePos, framePos
 
@@ -137,13 +141,11 @@ end
 Settings = game:service'HttpService':JSONEncode(readfile(Name))
 end)
 
-local LibName = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))
-
 function Kavo:ToggleUI()
-    if game.CoreGui[LibName].Enabled then
-        game.CoreGui[LibName].Enabled = false
+    if game.CoreGui["Kavo"].Enabled then
+        game.CoreGui["Kavo"].Enabled = false
     else
-        game.CoreGui[LibName].Enabled = true
+        game.CoreGui["Kavo"].Enabled = true
     end
 end
 
@@ -223,7 +225,7 @@ function Kavo.CreateLib(kavName, themeList)
     blurFrame.ZIndex = 999
 
     ScreenGui.Parent = game.CoreGui
-    ScreenGui.Name = LibName
+    ScreenGui.Name = "Kavo"
     ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     ScreenGui.ResetOnSpawn = false
 
@@ -573,10 +575,10 @@ function Kavo.CreateLib(kavName, themeList)
                 updateSectionFrame()
                 UpdateSize()
             local Elements = {}
-            function Elements:NewButton(bname,tipINf, callback)
+            function Elements:Button(bname, callback)
                 showLogo = showLogo or true
                 local ButtonFunction = {}
-                tipINf = tipINf or "Tip: Clicking this nothing will happen!"
+                tipINf = ""
                 bname = bname or "Click Me!"
                 callback = callback or function() end
 
@@ -706,7 +708,7 @@ function Kavo.CreateLib(kavName, themeList)
                         c:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, (-size / 2), 0.5, (-size / 2)), 'Out', 'Quad', len, true, nil)
                         for i = 1, 10 do
                             c.ImageTransparency = c.ImageTransparency + 0.05
-                            wait(len / 12)
+                            --wait(len / 12)
                         end
                         c:Destroy()
                     else
@@ -774,9 +776,9 @@ function Kavo.CreateLib(kavName, themeList)
                 return ButtonFunction
             end
 
-            function Elements:NewTextBox(tname, tTip, callback)
+            function Elements:NewTextBox(tname, callback)
                 tname = tname or "Textbox"
-                tTip = tTip or "Gets a value of Textbox"
+                tTip = ""
                 callback = callback or function() end
                 local textboxElement = Instance.new("TextButton")
                 local UICorner = Instance.new("UICorner")
@@ -970,10 +972,10 @@ function Kavo.CreateLib(kavName, themeList)
                 end)()
             end 
 
-                function Elements:NewToggle(tname, nTip, callback)
+                function Elements:Toggle(tname, callback)
                     local TogFunction = {}
                     tname = tname or "Toggle"
-                    nTip = nTip or "Prints Current Toggle State"
+                    nTip = "" 
                     callback = callback or function() end
                     local toggled = false
                     table.insert(SettingsT, tname)
@@ -1111,7 +1113,7 @@ function Kavo.CreateLib(kavName, themeList)
                                 c:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, (-size / 2), 0.5, (-size / 2)), 'Out', 'Quad', len, true, nil)
                                 for i = 1, 10 do
                                     c.ImageTransparency = c.ImageTransparency + 0.05
-                                    wait(len / 12)
+                                    --wait(len / 12)
                                 end
                                 c:Destroy()
                             else
@@ -1131,7 +1133,7 @@ function Kavo.CreateLib(kavName, themeList)
                                 c:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, (-size / 2), 0.5, (-size / 2)), 'Out', 'Quad', len, true, nil)
                                 for i = 1, 10 do
                                     c.ImageTransparency = c.ImageTransparency + 0.05
-                                    wait(len / 12)
+                                    --wait(len / 12)
                                 end
                                 c:Destroy()
                             end
@@ -1219,9 +1221,9 @@ function Kavo.CreateLib(kavName, themeList)
                     return TogFunction
             end
 
-            function Elements:NewSlider(slidInf, slidTip, maxvalue, minvalue, callback)
+            function Elements:Slider(slidInf, maxvalue, minvalue, callback)
                 slidInf = slidInf or "Slider"
-                slidTip = slidTip or "Slider tip here"
+                slidTip = "" 
                 maxvalue = maxvalue or 500
                 minvalue = minvalue or 16
                 startVal = startVal or 0
@@ -1463,7 +1465,7 @@ function Kavo.CreateLib(kavName, themeList)
                 end)        
             end
 
-            function Elements:NewDropdown(dropname, dropinf, list, callback)
+            function Elements:Dropdown(dropname, dropinf, list, callback)
                 local DropFunction = {}
                 dropname = dropname or "Dropdown"
                 list = list or {}
@@ -1532,7 +1534,7 @@ function Kavo.CreateLib(kavName, themeList)
                             c:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, (-size / 2), 0.5, (-size / 2)), 'Out', 'Quad', len, true, nil)
                             for i = 1, 10 do
                                 c.ImageTransparency = c.ImageTransparency + 0.05
-                                wait(len / 12)
+                                --wait(len / 12)
                             end
                             c:Destroy()
                         else
@@ -1554,7 +1556,7 @@ function Kavo.CreateLib(kavName, themeList)
                             c:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, (-size / 2), 0.5, (-size / 2)), 'Out', 'Quad', len, true, nil)
                             for i = 1, 10 do
                                 c.ImageTransparency = c.ImageTransparency + 0.05
-                                wait(len / 12)
+                                --wait(len / 12)
                             end
                             c:Destroy()
                         end
@@ -1756,7 +1758,7 @@ function Kavo.CreateLib(kavName, themeList)
                             c:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, (-size / 2), 0.5, (-size / 2)), 'Out', 'Quad', len, true, nil)
                             for i = 1, 10 do
                                 c.ImageTransparency = c.ImageTransparency + 0.05
-                                wait(len / 12)
+                                --wait(len / 12)
                             end
                             c:Destroy()         
                         else
@@ -1857,7 +1859,7 @@ function Kavo.CreateLib(kavName, themeList)
                                 c:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, (-size / 2), 0.5, (-size / 2)), 'Out', 'Quad', len, true, nil)
                                 for i = 1, 10 do
                                     c.ImageTransparency = c.ImageTransparency + 0.05
-                                    wait(len / 12)
+                                    --wait(len / 12)
                                 end
                                 c:Destroy()         
                             else
@@ -1911,7 +1913,7 @@ function Kavo.CreateLib(kavName, themeList)
                 end
                 return DropFunction
             end
-            function Elements:NewKeybind(keytext, keyinf, first, callback)
+            function Elements:Keybind(keytext, keyinf, first, callback)
                 keytext = keytext or "KeybindText"
                 keyinf = keyinf or "KebindInfo"
                 callback = callback or function() end
@@ -1964,7 +1966,7 @@ function Kavo.CreateLib(kavName, themeList)
                         c:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, (-size / 2), 0.5, (-size / 2)), 'Out', 'Quad', len, true, nil)
                         for i = 1, 10 do
                         c.ImageTransparency = c.ImageTransparency + 0.05
-                            wait(len / 12)
+                            --wait(len / 12)
                         end
                     else
                         for i,v in next, infoContainer:GetChildren() do
@@ -2124,7 +2126,7 @@ function Kavo.CreateLib(kavName, themeList)
                 end)()
             end
 
-            function Elements:NewColorPicker(colText, colInf, defcolor, callback)
+            function Elements:Color(colText, colInf, defcolor, callback)
                 colText = colText or "ColorPicker"
                 callback = callback or function() end
                 defcolor = defcolor or Color3.fromRGB(1,1,1)
@@ -2200,7 +2202,7 @@ function Kavo.CreateLib(kavName, themeList)
                             c:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, (-size / 2), 0.5, (-size / 2)), 'Out', 'Quad', len, true, nil)
                             for i = 1, 10 do
                                 c.ImageTransparency = c.ImageTransparency + 0.05
-                                wait(len / 12)
+                                --wait(len / 12)
                             end
                             c:Destroy()
                         else
@@ -2222,7 +2224,7 @@ function Kavo.CreateLib(kavName, themeList)
                             c:TweenSizeAndPosition(UDim2.new(0, size, 0, size), UDim2.new(0.5, (-size / 2), 0.5, (-size / 2)), 'Out', 'Quad', len, true, nil)
                             for i = 1, 10 do
                                 c.ImageTransparency = c.ImageTransparency + 0.05
-                                wait(len / 12)
+                                --wait(len / 12)
                             end
                             c:Destroy()
                         end
@@ -2592,13 +2594,13 @@ function Kavo.CreateLib(kavName, themeList)
                 setcolor({h,s,v})
             end
             
-            function Elements:NewLabel(title)
+            function Elements:Label(title)
             	local labelFunctions = {}
             	local label = Instance.new("TextLabel")
             	local UICorner = Instance.new("UICorner")
             	label.Name = "label"
             	label.Parent = sectionInners
-            	label.BackgroundColor3 = themeList.SchemeColor
+            	label.BackgroundColor3 = themeList.ElementColor
             	label.BorderSizePixel = 0
 				label.ClipsDescendants = true
             	label.Text = title
@@ -2623,7 +2625,7 @@ function Kavo.CreateLib(kavName, themeList)
 
 		        coroutine.wrap(function()
 		            while wait() do
-		                label.BackgroundColor3 = themeList.SchemeColor
+		                label.BackgroundColor3 = themeList.ElementColor
 		                label.TextColor3 = themeList.TextColor
 		            end
 		        end)()
