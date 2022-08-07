@@ -1,7 +1,7 @@
 local Kavo = {}
 
 for z,a in pairs(game.CoreGui:GetChildren()) do 
-    if a.Name="Kavo"then a:Destroy() 
+    if a.Name=="Kavo"then a:Destroy() 
    end 
 end
 
